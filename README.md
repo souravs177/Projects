@@ -174,12 +174,6 @@ The synthetic dataset models:
 - provider reference data
 - medical claims with diagnosis, procedure, billed, and paid amounts
 
-That gives you a realistic base for:
-
-- data engineering portfolio projects
-- interview walkthroughs
-- healthcare analytics demos
-- medallion architecture examples
 
 ## Airflow orchestration
 
