@@ -1,18 +1,27 @@
 # Healthcare Medallion Data Engineering Project
 
-Starter repository for a healthcare analytics pipeline built with Python, Spark, SQL, Delta Lake, Airflow, and a medallion-style data lake layout.
+Portfolio-ready healthcare data engineering project for payer-style claims analytics using Python, PySpark, SQL, Delta Lake, Airflow, and medallion architecture.
 
-## What this repo gives you
+![Healthcare Medallion Architecture](docs/assets/healthcare-medallion-architecture.svg)
 
-- `bronze` ingestion for raw healthcare source files
-- `silver` cleansing and dimensional enrichment for claims analytics
-- `gold` business-ready aggregates for cost and provider reporting
-- Delta Lake storage for ACID tables and schema-aware batch writes
-- incremental Delta merge handling for late-arriving healthcare claims
-- Airflow DAG for scheduled bronze, silver, and gold orchestration
-- synthetic sample datasets so you can run the pipeline locally
-- SQL equivalents for common transformations
-- a small test suite and GitHub Actions workflow
+## Why this repo stands out
+
+- realistic healthcare domain model with claims, members, and providers
+- medallion data lake pattern with `bronze`, `silver`, and `gold` layers
+- incremental Delta merge logic for late-arriving healthcare claims
+- business-ready gold aggregates for cost, plan, state, and provider analysis
+- Airflow orchestration artifact for production-style scheduling
+- SQL equivalents alongside Spark transformations
+- lightweight test coverage and GitHub Actions CI
+
+## Tech stack
+
+- Python 3.11
+- PySpark 3.5
+- SQL
+- Delta Lake
+- Apache Airflow
+- GitHub Actions
 
 ## Project layout
 
@@ -45,11 +54,47 @@ Starter repository for a healthcare analytics pipeline built with Python, Spark,
 `-- tests/
 ```
 
-## Medallion flow
+## Architecture at a glance
 
 1. `bronze`: land raw claims, members, and providers files into Delta tables with ingestion metadata.
-2. `silver`: standardize types, validate records, and join claims with member/provider dimensions.
-3. `gold`: publish curated Delta tables for monthly plan cost and provider specialty performance.
+2. `silver`: standardize types, validate records, and join claims with member and provider dimensions.
+3. `gold`: publish curated aggregates for finance and provider performance reporting.
+4. `airflow`: orchestrate bronze, silver, and gold execution in sequence.
+
+See the detailed design notes in [docs/architecture.md](docs/architecture.md).
+
+## Healthcare dataset used
+
+This project uses a synthetic but realistic healthcare claims dataset with three core entities:
+
+- `claims`: claim id, member id, provider id, diagnosis code, procedure code, billed amount, paid amount, claim status, service date
+- `members`: member demographics and plan enrollment attributes
+- `providers`: provider master data including specialty, location, and NPI
+
+The use case is intentionally shaped like payer or insurance analytics, where the goal is to track cost, utilization, denial behavior, and provider performance.
+
+## Transformations implemented
+
+### Bronze
+
+- read source CSV files with explicit schemas
+- append ingestion metadata such as `source_file`, `record_hash`, `ingested_at`, and `record_source`
+- merge changed source rows into Delta tables when incremental mode is enabled
+
+### Silver
+
+- cast raw dates into typed columns
+- standardize state, city, specialty, and claim status values
+- filter invalid claims with missing business keys or negative paid amounts
+- join claims with member and provider reference data
+- derive `claim_month`, `patient_responsibility`, `is_high_cost_claim`, and `last_touched_at`
+- build `claim_quality_metrics` grouped by month, plan, and claim status
+
+### Gold
+
+- build `monthly_cost_by_plan_state`
+- build `provider_specialty_summary`
+- refresh only the impacted claim months during incremental runs
 
 ## Quick start
 
@@ -121,7 +166,12 @@ The synthetic dataset models:
 - provider reference data
 - medical claims with diagnosis, procedure, billed, and paid amounts
 
-That gives you a realistic base for common data engineering interview projects, portfolio repos, or internal accelerators.
+That gives you a realistic base for:
+
+- data engineering portfolio projects
+- interview walkthroughs
+- healthcare analytics demos
+- medallion architecture examples
 
 ## Airflow orchestration
 
@@ -132,6 +182,10 @@ The DAG lives at [orchestration/airflow/dags/healthcare_medallion_dag.py](orches
 3. `gold_serving`
 
 For setup notes, see [docs/orchestration.md](docs/orchestration.md).
+
+## CI
+
+GitHub Actions runs the test suite on every push and pull request through [ci.yml](.github/workflows/ci.yml).
 
 ## Next upgrades
 

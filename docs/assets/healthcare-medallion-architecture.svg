@@ -1,0 +1,103 @@
+<svg width="1400" height="760" viewBox="0 0 1400 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="760" fill="#F4F7F8"/>
+  <rect x="48" y="40" width="1304" height="680" rx="20" fill="#FFFFFF" stroke="#D7E0E5" stroke-width="2"/>
+
+  <text x="88" y="104" fill="#13232F" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">
+    Healthcare Medallion Data Pipeline
+  </text>
+  <text x="88" y="142" fill="#55707F" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    Python + PySpark + SQL + Delta Lake + Airflow
+  </text>
+
+  <rect x="88" y="196" width="250" height="132" rx="12" fill="#FCE9E7" stroke="#E37A6E" stroke-width="2"/>
+  <text x="112" y="234" fill="#7B2C24" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">
+    Raw Sources
+  </text>
+  <text x="112" y="270" fill="#7B2C24" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    claims.csv
+  </text>
+  <text x="112" y="298" fill="#7B2C24" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    members.csv
+  </text>
+  <text x="112" y="326" fill="#7B2C24" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    providers.csv
+  </text>
+
+  <rect x="404" y="170" width="260" height="190" rx="12" fill="#FFF1D8" stroke="#E3A43A" stroke-width="2"/>
+  <text x="432" y="210" fill="#734B00" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">
+    Bronze
+  </text>
+  <text x="432" y="246" fill="#734B00" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    Raw landing tables
+  </text>
+  <text x="432" y="278" fill="#734B00" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    + source_file
+  </text>
+  <text x="432" y="304" fill="#734B00" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    + record_hash
+  </text>
+  <text x="432" y="330" fill="#734B00" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    + ingested_at
+  </text>
+
+  <rect x="728" y="170" width="260" height="190" rx="12" fill="#E8F6E9" stroke="#56A566" stroke-width="2"/>
+  <text x="756" y="210" fill="#225A2C" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">
+    Silver
+  </text>
+  <text x="756" y="246" fill="#225A2C" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    Clean and enriched
+  </text>
+  <text x="756" y="278" fill="#225A2C" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    typed dates
+  </text>
+  <text x="756" y="304" fill="#225A2C" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    normalized dimensions
+  </text>
+  <text x="756" y="330" fill="#225A2C" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    member_claims + quality metrics
+  </text>
+
+  <rect x="1052" y="170" width="252" height="190" rx="12" fill="#E5F4F9" stroke="#4A96B6" stroke-width="2"/>
+  <text x="1080" y="210" fill="#0F4860" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">
+    Gold
+  </text>
+  <text x="1080" y="246" fill="#0F4860" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    Analytics marts
+  </text>
+  <text x="1080" y="278" fill="#0F4860" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    monthly_cost_by_plan_state
+  </text>
+  <text x="1080" y="304" fill="#0F4860" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    provider_specialty_summary
+  </text>
+  <text x="1080" y="330" fill="#0F4860" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    reporting ready outputs
+  </text>
+
+  <rect x="180" y="446" width="1040" height="190" rx="14" fill="#F7FAFC" stroke="#D7E0E5" stroke-width="2"/>
+  <text x="212" y="488" fill="#13232F" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">
+    Cross-cutting pipeline capabilities
+  </text>
+  <text x="212" y="532" fill="#334F5F" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    Incremental merges for late-arriving claims and dimension updates
+  </text>
+  <text x="212" y="566" fill="#334F5F" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    SQL mirrors for warehouse-friendly transformation logic
+  </text>
+  <text x="212" y="600" fill="#334F5F" font-family="Arial, Helvetica, sans-serif" font-size="20">
+    Airflow DAG for bronze -> silver -> gold orchestration
+  </text>
+
+  <rect x="1112" y="78" width="192" height="56" rx="10" fill="#F3EFE3" stroke="#C3B17B" stroke-width="2"/>
+  <text x="1141" y="113" fill="#6C5A1B" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">
+    Portfolio Project
+  </text>
+
+  <path d="M338 262H388" stroke="#8095A1" stroke-width="6" stroke-linecap="round"/>
+  <path d="M664 262H712" stroke="#8095A1" stroke-width="6" stroke-linecap="round"/>
+  <path d="M988 262H1034" stroke="#8095A1" stroke-width="6" stroke-linecap="round"/>
+
+  <path d="M386 244L410 262L386 280" fill="none" stroke="#8095A1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M710 244L734 262L710 280" fill="none" stroke="#8095A1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1032 244L1056 262L1032 280" fill="none" stroke="#8095A1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
