@@ -44,3 +44,8 @@ incremental:
     providers: [provider_id]
   silver_merge_keys:
     member_claims: [claim_id]
+
+data_quality:
+  enabled: true
+  fail_on_error: true
+  results_path: data/system/quality

@@ -11,6 +11,7 @@ Portfolio-ready healthcare data engineering project for payer-style claims analy
 - incremental Delta merge logic for late-arriving healthcare claims
 - business-ready gold aggregates for cost, plan, state, and provider analysis
 - Airflow orchestration artifact for production-style scheduling
+- Great Expectations quality gates with JSON validation reports
 - SQL equivalents alongside Spark transformations
 - lightweight test coverage and GitHub Actions CI
 
@@ -20,6 +21,7 @@ Portfolio-ready healthcare data engineering project for payer-style claims analy
 - PySpark 3.5
 - SQL
 - Delta Lake
+- Great Expectations
 - Apache Airflow
 - GitHub Actions
 
@@ -95,6 +97,12 @@ The use case is intentionally shaped like payer or insurance analytics, where th
 - build `monthly_cost_by_plan_state`
 - build `provider_specialty_summary`
 - refresh only the impacted claim months during incremental runs
+
+### Data quality
+
+- Great Expectations suites validate bronze, silver, and gold outputs
+- validation reports are written under `data/system/quality`
+- the pipeline fails fast when a configured expectation does not pass
 
 ## Quick start
 

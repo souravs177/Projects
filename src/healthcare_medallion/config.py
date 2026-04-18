@@ -77,12 +77,20 @@ class IncrementalConfig:
 
 
 @dataclass(frozen=True)
+class DataQualityConfig:
+    enabled: bool = True
+    fail_on_error: bool = True
+    results_path: str = "data/system/quality"
+
+
+@dataclass(frozen=True)
 class PipelineConfig:
     project_name: str
     root_dir: Path
     storage: StorageConfig
     spark: SparkConfig
     incremental: IncrementalConfig
+    data_quality: DataQualityConfig
     datasets: dict[str, DatasetConfig]
     write_mode: str = "overwrite"
 
@@ -104,6 +112,9 @@ class PipelineConfig:
 
     def metadata_path(self, *parts: str) -> Path:
         return self.resolve_path(Path(self.storage.metadata_path, *parts))
+
+    def data_quality_path(self, layer: str, dataset_name: str) -> Path:
+        return self.resolve_path(Path(self.data_quality.results_path, layer, f"{dataset_name}.json"))
 
     def merge_keys(self, layer: str, dataset_name: str) -> list[str]:
         return self.incremental.merge_keys(layer, dataset_name)
@@ -132,6 +143,11 @@ def load_config(config_path: str | Path) -> PipelineConfig:
             for name, keys in raw_config.get("incremental", {}).get("silver_merge_keys", {}).items()
         },
     )
+    data_quality = DataQualityConfig(
+        enabled=bool(raw_config.get("data_quality", {}).get("enabled", True)),
+        fail_on_error=bool(raw_config.get("data_quality", {}).get("fail_on_error", True)),
+        results_path=str(raw_config.get("data_quality", {}).get("results_path", "data/system/quality")),
+    )
     datasets = {
         name: DatasetConfig(
             name=name,
@@ -149,6 +165,7 @@ def load_config(config_path: str | Path) -> PipelineConfig:
         storage=storage,
         spark=spark,
         incremental=incremental,
+        data_quality=data_quality,
         datasets=datasets,
         write_mode=raw_config.get("write_mode", "overwrite"),
     )

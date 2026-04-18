@@ -38,3 +38,8 @@ datasets:
 
 incremental:
   enabled: false
+
+data_quality:
+  enabled: true
+  fail_on_error: true
+  results_path: data/windows-local/system/quality

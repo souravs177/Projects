@@ -17,3 +17,6 @@ def test_load_config_reads_expected_datasets() -> None:
     assert config.incremental.enabled is True
     assert config.merge_keys("bronze", "claims") == ["claim_id"]
     assert config.merge_keys("silver", "member_claims") == ["claim_id"]
+    assert config.data_quality.enabled is True
+    assert config.data_quality.fail_on_error is True
+    assert config.data_quality_path("silver", "member_claims").name == "member_claims.json"

@@ -7,6 +7,7 @@ from pathlib import Path
 
 from healthcare_medallion.config import load_config
 from healthcare_medallion.jobs import bronze, gold, silver
+from healthcare_medallion.quality import run_quality_checks
 from healthcare_medallion.spark import build_spark_session
 
 LOGGER = logging.getLogger(__name__)
@@ -41,15 +42,18 @@ def run_pipeline(layer: str, config_path: str | Path) -> None:
     try:
         if layer in {"bronze", "all"}:
             LOGGER.info("Running bronze layer.")
-            bronze.run(spark, config)
+            bronze_outputs = bronze.run(spark, config)
+            run_quality_checks(spark, config, "bronze", bronze_outputs)
 
         if layer in {"silver", "all"}:
             LOGGER.info("Running silver layer.")
-            silver.run(spark, config)
+            silver_outputs = silver.run(spark, config)
+            run_quality_checks(spark, config, "silver", silver_outputs)
 
         if layer in {"gold", "all"}:
             LOGGER.info("Running gold layer.")
-            gold.run(spark, config)
+            gold_outputs = gold.run(spark, config)
+            run_quality_checks(spark, config, "gold", gold_outputs)
     finally:
         spark.stop()
 

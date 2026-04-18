@@ -7,6 +7,7 @@ Healthcare pipelines usually need traceability, validation, and business-friendl
 - `bronze` keeps raw source fidelity and ingestion metadata in Delta tables
 - `silver` applies standardization and joins for analytics readiness
 - `gold` exposes curated KPI tables for reporting and machine learning features
+- Great Expectations adds quality gates and validation result artifacts across the medallion flow
 
 ## Domain model in this starter
 
@@ -21,8 +22,9 @@ Healthcare pipelines usually need traceability, validation, and business-friendl
 3. Read bronze data, clean and enrich in Spark
 4. Merge changed claim rows into silver tables
 5. Refresh only the affected gold claim months
-6. Schedule the layer execution in Airflow
-7. Reuse the matching SQL scripts in `sql/` for warehouse implementations
+6. Validate each layer with Great Expectations quality checks
+7. Schedule the layer execution in Airflow
+8. Reuse the matching SQL scripts in `sql/` for warehouse implementations
 
 ## Suggested extensions
 
