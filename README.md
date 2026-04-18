@@ -187,8 +187,3 @@ For setup notes, see [docs/orchestration.md](docs/orchestration.md).
 
 GitHub Actions runs the test suite on every push and pull request through [ci.yml](.github/workflows/ci.yml).
 
-## Next upgrades
-
-- publish Delta tables to Unity Catalog, Hive Metastore, or a warehouse
-- add data quality checks with Great Expectations or Deequ
-- add delete handling for source tombstones and member/provider deactivation
