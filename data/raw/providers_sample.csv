@@ -1,0 +1,5 @@
+provider_id,provider_name,specialty,npi,city,state
+P200,Northside Family Clinic,Primary Care,1457392841,Dallas,TX
+P201,Lakeshore Cardiology,Cardiology,1146203987,Chicago,IL
+P202,Puget Rehab Center,Physical Therapy,1395874620,Seattle,WA
+P203,Capitol Preventive Care,Endocrinology,1674203958,Austin,TX

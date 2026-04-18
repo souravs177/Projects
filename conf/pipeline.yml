@@ -1,0 +1,46 @@
+project_name: healthcare_medallion
+write_mode: overwrite
+
+storage:
+  raw_path: data/raw
+  bronze_path: data/bronze
+  silver_path: data/silver
+  gold_path: data/gold
+  metadata_path: data/system
+  bronze_format: delta
+  silver_format: delta
+  gold_format: delta
+
+spark:
+  app_name: healthcare-medallion-pipeline
+  master: local[*]
+  shuffle_partitions: 4
+
+datasets:
+  claims:
+    path: claims_sample.csv
+    format: csv
+    schema: claims
+    options:
+      header: "true"
+  members:
+    path: members_sample.csv
+    format: csv
+    schema: members
+    options:
+      header: "true"
+  providers:
+    path: providers_sample.csv
+    format: csv
+    schema: providers
+    options:
+      header: "true"
+
+incremental:
+  enabled: true
+  bronze_merge_keys:
+    claims: [claim_id]
+    members: [member_id]
+    providers: [provider_id]
+  silver_merge_keys:
+    member_claims: [claim_id]

@@ -1,0 +1,6 @@
+member_id,full_name,date_of_birth,gender,city,state,plan_id
+M100,Avery Carter,1985-06-14,F,Dallas,TX,PLAN_GOLD
+M101,Jordan Lee,1991-11-08,M,Chicago,IL,PLAN_SILVER
+M102,Sam Patel,1978-02-25,F,Houston,TX,PLAN_GOLD
+M103,Riley Brooks,1969-09-19,F,Seattle,WA,PLAN_BRONZE
+M104,Taylor Nguyen,2000-04-02,M,Austin,TX,PLAN_SILVER

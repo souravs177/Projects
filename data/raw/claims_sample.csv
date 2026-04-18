@@ -1,0 +1,7 @@
+claim_id,member_id,provider_id,service_date,diagnosis_code,procedure_code,billed_amount,paid_amount,claim_status
+C1001,M100,P200,2026-01-05,E11.9,83036,280.00,225.00,paid
+C1002,M101,P201,2026-01-08,I10,93000,185.00,140.00,paid
+C1003,M102,P200,2026-01-10,J45.909,94640,120.00,95.00,paid
+C1004,M103,P202,2026-02-03,M54.5,97110,320.00,240.00,paid
+C1005,M100,P202,2026-02-14,E78.5,80061,90.00,0.00,denied
+C1006,M104,P203,2026-02-20,R73.03,82947,60.00,45.00,paid

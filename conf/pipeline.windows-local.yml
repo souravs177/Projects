@@ -1,0 +1,40 @@
+project_name: healthcare_medallion
+write_mode: overwrite
+
+storage:
+  raw_path: data/raw
+  bronze_path: data/windows-local/bronze
+  silver_path: data/windows-local/silver
+  gold_path: data/windows-local/gold
+  metadata_path: data/windows-local/system
+  bronze_format: parquet
+  silver_format: parquet
+  gold_format: parquet
+
+spark:
+  app_name: healthcare-medallion-pipeline-windows-local
+  master: local[*]
+  shuffle_partitions: 4
+
+datasets:
+  claims:
+    path: claims_sample.csv
+    format: csv
+    schema: claims
+    options:
+      header: "true"
+  members:
+    path: members_sample.csv
+    format: csv
+    schema: members
+    options:
+      header: "true"
+  providers:
+    path: providers_sample.csv
+    format: csv
+    schema: providers
+    options:
+      header: "true"
+
+incremental:
+  enabled: false

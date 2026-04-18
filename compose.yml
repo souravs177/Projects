@@ -1,0 +1,11 @@
+services:
+  healthcare-pipeline:
+    build:
+      context: .
+    image: healthcare-medallion:local
+    working_dir: /app
+    environment:
+      SPARK_LOCAL_IP: 127.0.0.1
+    volumes:
+      - .:/app
+    command: python -m healthcare_medallion.pipeline --layer all
