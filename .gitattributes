@@ -1,0 +1,3 @@
+# Keep the warehouse SQL assets visible in GitHub Linguist language stats.
+*.sql linguist-language=SQL
+sql/** linguist-detectable
